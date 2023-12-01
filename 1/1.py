@@ -1,7 +1,6 @@
 
 from pprint import pprint
 import sys
-# sys.path.append('/Users/ataktaev/Documents/AoC2023')
 pprint(sys.path)
 
 
