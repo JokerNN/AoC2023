@@ -1,9 +1,3 @@
-
-from pprint import pprint
-import sys
-pprint(sys.path)
-
-
 from utils.input import get_input_lines
 import re
 
@@ -25,7 +19,7 @@ m = {
     'one': 1,
     'two': 2,
     'three': 3,
-    'four':4,
+    'four': 4,
     'five': 5,
     'six': 6,
     'seven': 7,
@@ -39,7 +33,8 @@ for line in lines:
     occurences = []
     for text, figure in m.items():
         occurences.extend([(m.start(), text) for m in re.finditer(text, line)])
-        occurences.extend([(m.start(), str(figure)) for m in re.finditer(str(figure), line)])
+        occurences.extend([(m.start(), str(figure))
+                          for m in re.finditer(str(figure), line)])
 
     occurences = [o for o in occurences if o[0] != -1]
     occurences.sort(key=lambda o: o[0])

@@ -1,2 +1,6 @@
 lib/*
 bin/*
+Scripts/*
+pyvenv.cfg
+.vscode/*
+*.pyc
