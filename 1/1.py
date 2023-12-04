@@ -48,3 +48,47 @@ for line in lines:
     s += int(first_digit + last_digit)
 
 print(f'Answer 2: {s}')
+
+
+
+def sum_calibration_values_with_overlap(input_data):
+    word_to_digit = {
+        "one": "1", 
+        "two": "2", 
+        "three": "3", 
+        "four": "4", 
+        "five": "5",
+        "six": "6", 
+        "seven": "7", 
+        "eight": "8", 
+        "nine": "9"
+    }
+
+    total_sum = 0
+
+    for line in input_data:
+        digits_found = []
+
+        # Search for all number words and digits in the line
+        for word, digit in word_to_digit.items():
+            for match in re.finditer(word, line):
+                digits_found.append((match.start(), digit))
+        # Also search for numerical digits
+        for match in re.finditer(r'\d', line):
+            digits_found.append((match.start(), match.group()))
+        # Sort the found digits by their position in the line
+        digits_found.sort(key=lambda x: x[0])
+        # Identify the first and last number word/digit found
+        if digits_found:
+            first_digit = digits_found[0][1]
+            last_digit = digits_found[-1][1]
+            total_sum += int(first_digit + last_digit)
+
+    return total_sum
+
+
+# Calculate the sum for Part Two
+input_part_two = lines
+result_part_two = sum_calibration_values_with_overlap(input_part_two)
+
+print("The sum of all calibration values for Part Two is:", result_part_two)
